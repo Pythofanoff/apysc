@@ -1,11 +1,9 @@
-import json
 import os
 import time
 import venv
 from datetime import datetime
 from pathlib import Path
 from importlib.metadata import version
-import timeit
 
 import toml
 from colorama import Fore, Style, init
@@ -35,7 +33,7 @@ from .constants import (
     TOML
 ) 
 
-from .paths import (
+from .config import (
     NAME_OF_PROJECT,
     DESCRIPTION,
     LICENSE,
@@ -171,7 +169,7 @@ class Builder:
         if VENV.lower().startswith("pyv"):
             venv.create("venv")     
         elif VENV.lower().startswith("poet"):
-            pass 
+            print("Poetry has not yet been integrated into this version of apysc.")
         else:
             print(f'{ERRORS}ERROR')
             return 

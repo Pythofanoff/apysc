@@ -1,5 +1,4 @@
 import os
-import runpy
 import time
 
 import keyboard
@@ -9,7 +8,7 @@ from .cli import build, open_cfg, clear_cache
 
 init(autoreset=True)
 
-class CLI:
+class TUI:
     MOVE_DOWN: str = "down" # DEFAULT = "down"
     MOVE_UP: str = "up" # DEFAULT = "up"
     BACK_TO_MENU: str = "esc" # DEFAULT = "esc"

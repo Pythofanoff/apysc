@@ -5,9 +5,10 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "apysc"
 version = "0.0.5.1"
-description = "Auto Python structure creator"
+description = "Auto python structure creator & project manager"
 readme = "README.md"
 requires-python = ">=3.8"
+dependencies = ["keyboard", "colorama", "pathlib", "toml"]
 
 license = { file = "LICENSE" }
 
@@ -16,8 +17,8 @@ authors = [
 ]
 
 [project.urls]
-Homepage = "github.com/Pythofanoff"
-Repository = "github.com/Pythofanoff/AutoPySC"
+Homepage = "https://github.com/Pythofanoff"
+Repository = "https://github.com/Pythofanoff/AutoPySC"
 
 [tool.setuptools]
 py-modules = ["cli", "PATHS"]

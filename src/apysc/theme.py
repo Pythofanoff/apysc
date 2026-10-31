@@ -1,6 +1,6 @@
 from colorama import Fore
 
-from .paths import THEME_CHOOSE, THEME_PATH
+from .config import THEME_CHOOSE, THEME_PATH
 from .utils.fileutils import cfg_open
 
 # try:

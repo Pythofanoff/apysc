@@ -56,7 +56,7 @@ MyProject
 
 1) **In terminal**: `pip install apysc` or launch auto-build `build.bat`;
 2) **In terminal**: `cd MyProject`;
-3) **Configure file** `paths.py` under the project: `apysc open`;
+3) **Configure file** `config.py` under the project: `apysc open`;
 4) **In terminal**: `apysc build` or `python -m apysc build`.
 
 ### <OTHER COMMANDS?>

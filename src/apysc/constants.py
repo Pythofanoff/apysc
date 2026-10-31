@@ -1,6 +1,6 @@
 from datetime import date
 
-from .paths import *
+from .config import *
 
 year = date.today().year
 

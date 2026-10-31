@@ -16,12 +16,12 @@ def get_version():
 @click.group(invoke_without_command=True)
 @click.pass_context
 def cli(ctx):
-    from .cli_menu import CLI
+    from .tui import TUI
     
     if ctx.invoked_subcommand is None:
-        CLI()
+        TUI()
 
-@cli.command()
+@cli.command(help='Build project')
 def build():    
     import runpy
     
@@ -55,7 +55,7 @@ def clear_cache():
     else: print(f'{SKIPPED}Cancel')
 
 @cli.command(name='open', help='Open file config')
-@click.option('-cfg', '--cfg', 'cfg_path', default='paths.py')
+@click.option('-cfg', '--cfg', 'cfg_path', default='config.py')
 def open_cfg(cfg_path):
     try:
         pkg = importlib.import_module("apysc")
