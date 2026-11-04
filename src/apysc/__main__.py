@@ -66,12 +66,14 @@ class Builder:
 
         print(
             f"\r{self.get_time()}{Fore.RESET}"
-            f"{Fore.RESET}Creating {VIRTUAL_ENVIROMENT}{padded_label}{Fore.RESET} ",
+            f"Creating {VIRTUAL_ENVIROMENT}{padded_label}{Fore.RESET} ",
             end="",
             flush=True,
         )
 
         self.builder_venv()
+        print(f"\r{self.get_time()}{Fore.RESET}Initialization git... ", end="", flush=True)
+        self.builder_git()
         print(f"{self.get_time()}{Fore.RESET}Creating {FOLDERS}folders{Fore.RESET}...")
         self.builder_folders()
         print(f"{self.get_time()}{Fore.RESET}Creating {FILES}files{Fore.RESET}...")
@@ -165,7 +167,16 @@ class Builder:
             elif not is_file_exists:
                 self.creating(color=CREATED, value=file_path)
 
+    def builder_git(self):
+        import subprocess
+        subprocess.run("git init -b master")
+        print(f"{CREATED}Successful")
+
     def builder_venv(self):
+        if os.path.exists("venv"):
+            print(f'{SKIPPED}SKIPPED')
+            return 
+
         if VENV.lower().startswith("pyv"):
             venv.create("venv")     
         elif VENV.lower().startswith("poet"):
@@ -212,11 +223,27 @@ _  __/   __/ /  _  /|  / __/ /  ____/ /_  __  /
         f"{FOLDERS}{elapsed:.3f}ms{Style.RESET_ALL}"
     )
     print(f"\n{sep}\n{BASE_COLOR}# {colored_status}{' ' * (width - len(status))} {BASE_COLOR}#")
+    
+    import re
+
+    ANSI_RE = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
 
     def row(label, value, color):
-        text = f"{label}{BASE_COLOR}:{Fore.RESET} {value} files"
-        colored_text = f"{color}{label}{Style.RESET_ALL}{BASE_COLOR}:{Fore.RESET} {FOLDERS}{value}{Style.RESET_ALL} {FILES}files{Fore.RESET}/{FOLDERS}folders"
-        return f"{BASE_COLOR}# {colored_text}{' ' * (width - len(text))} {BASE_COLOR}#"
+        text = (
+            f"{label}{BASE_COLOR}:{Fore.RESET} "
+            f"{value} {FILES}files{Fore.RESET}/{FOLDERS}folders"
+        )
+        colored_text = (
+            f"{color}{label}{Style.RESET_ALL}"
+            f"{BASE_COLOR}:{Fore.RESET} "
+            f"{FOLDERS}{value}{Style.RESET_ALL} "
+            f"{FILES}files{Fore.RESET}/{FOLDERS}folders"
+        )
+
+        visible_length = len(ANSI_RE.sub("", colored_text))
+        padding = max(0, width - visible_length)
+
+        return f"{BASE_COLOR}# {colored_text}{' ' * padding} {BASE_COLOR}#"
 
     print(BASE_COLOR + "#" + "-" * (width + 2) + BASE_COLOR + "#")
     print(row("CREATED", builder.created, CREATED))

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "apysc"
-version = "0.0.5.1"
+version = "0.0.6"
 description = "Auto python structure creator & project manager"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -21,7 +21,7 @@ Homepage = "https://github.com/Pythofanoff"
 Repository = "https://github.com/Pythofanoff/AutoPySC"
 
 [tool.setuptools]
-py-modules = ["cli", "PATHS"]
+py-modules = ["cli", "config"]
 package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]

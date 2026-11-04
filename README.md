@@ -64,6 +64,7 @@ MyProject
 `apysc` - TUI; <br>
 `apysc version` - Show actual version tool; <br>
 `apysc clear-cache-project` - Clean up caches. <br>
+`apysc --help` - Show all commands.
 
 ### [**More information**](https://github.com/Pythofanoff/AutoPySC/blob/master/docs%2Fgetting-started.md)
 
