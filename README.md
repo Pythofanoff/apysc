@@ -5,9 +5,20 @@
  **AutoPySC** or **Auto Python Structure Creator** -
  This is a **lightweight**, simple **tool for creating a project tree**.
 
- This tool was originally written for my own small, private projects,
+ `This tool was originally written for my own small, private projects,
 but I decided to keep it publicly available.
-Perhaps one day this small script will grow into something bigger.
+Perhaps one day this small script will grow into something bigger.`
+
+## 3 reasons to use apysc
+
+1) It speeds up development.
+2) It automatically creates a pre-filled license file and a .gitignore file, sets up the project’s folder and file structure, and initializes a Git repository.
+3) It helps you manage your project by clearing its cache or deleting the project.
+
+## Who is this tool for
+- Developers of small projects and indie studios.
+- Teams working on medium-sized and large projects, including teams at companies.
+Future goal: To build a universal tool for developers working with different technology stacks—one that speeds up development while helping maintain high software quality.
 
 >[!Warning]
 >**This tool is still in the testing stage, problems are possible, please write about any errors in github issues** [Click](https://github.com/Pythofanoff/AutoPySC/issues)
@@ -63,6 +74,7 @@ MyProject
 
 `apysc` - TUI; <br>
 `apysc version` - Show actual version tool; <br>
+`apysc delete-project` - Delete files and folders project. <br>
 `apysc clear-cache-project` - Clean up caches. <br>
 `apysc --help` - Show all commands.
 

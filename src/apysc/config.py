@@ -8,7 +8,7 @@
 # ABOUT PROJECT
 NAME_OF_PROJECT: str = 'my_project' # DEFAULT = 'my_project'
 AUTHOR: str = 'Dev' # DEFAULT = 'Dev'
-VERSION: str = 'v0.0.1' # DEFAULT = 0.0.1
+VERSION: str = 'v0.1' # DEFAULT = v0.1
 DESCRIPTION: str = f'{NAME_OF_PROJECT} {VERSION} by {AUTHOR}' # DEFAULT = f'{NAME_OF_PROJECT} {VERSION} by {AUTHOR}'
 LICENSE: str = 'MIT' # DEFAULT = 'MIT', 'ApacheLicenseVersion2', 'GNU'
 EMAIL: str = 'youremail@example.com' # DEFAULT = 'youremail@example.com'

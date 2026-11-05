@@ -124,6 +124,36 @@
                 "src/{NAME_OF_PROJECT}/config.py", 
                 "src/{NAME_OF_PROJECT}/__init__.py"
             ]
+        },
+        "gamedev": {
+            "folders_path": [
+                "src", 
+                "logs", 
+                "docs",
+                "cache", 
+                "worlds",
+                "resource_packs",
+                "mods",
+                "tests",
+                "crash_reports",
+                "src/{NAME_OF_PROJECT}", 
+                "src/{NAME_OF_PROJECT}/utils",
+                "src/{NAME_OF_PROJECT}/textures"
+            ],
+
+            "files_path": [
+                "LICENSE", 
+                "README.md", 
+                ".gitignore", 
+                "docs/index.md",
+                "pyproject.toml", 
+                "tests/__init__.py",  
+                "src/{NAME_OF_PROJECT}/main.py", 
+                "src/{NAME_OF_PROJECT}/config.py", 
+                "src/{NAME_OF_PROJECT}/__init__.py", 
+                "src/{NAME_OF_PROJECT}/utils/helpers.py",
+                "src/{NAME_OF_PROJECT}/utils/__init__.py"
+            ]
         }
     }
 }

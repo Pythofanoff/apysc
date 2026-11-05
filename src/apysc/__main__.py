@@ -173,7 +173,7 @@ class Builder:
         print(f"{CREATED}Successful")
 
     def builder_venv(self):
-        if os.path.exists("venv"):
+        if os.path.exists("venv") or not LANGUAGE.startswith("py"):
             print(f'{SKIPPED}SKIPPED')
             return 
 
@@ -182,7 +182,7 @@ class Builder:
         elif VENV.lower().startswith("poet"):
             print("Poetry has not yet been integrated into this version of apysc.")
         else:
-            print(f'{ERRORS}ERROR')
+            print(f'{ERRORS}ERROR {VENV} not found')
             return 
     
         print(f'{CREATED}CREATED')

@@ -51,6 +51,7 @@ class TUI:
         menu[self.string_id] = self.FILLER * self.L_PADX + self.CURSOR + select + self.FILLER * self.R_PADX
         menu = "\n".join(menu)
         print(menu)
+        print(f"\n{self.MOVE_UP} - UP {self.MOVE_DOWN} - DOWN {self.CONFIRM} - ENTER {self.BACK_TO_MENU} - CANCEL ")
 
     def controller(self) -> None:
         count_menu_lines = len(self.MENU)-1
@@ -97,4 +98,4 @@ class TUI:
         elif self.string_id == 3:
             print("Exiting...")
             time.sleep(0.1)
-            quit() 
+            quit()

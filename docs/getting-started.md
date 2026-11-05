@@ -25,6 +25,141 @@
 ╚══════╝╚═╝░░╚══╝░╚═════╝░
 ```
 
+# Installing the library with pip
+
+**`pip install apysc`** <br>
+or: <br>
+**`python -m pip install apysc`** <br>
+
+> [!IMPORTANT]
+> **Tip: As of March 1, 2026, I have not yet uploaded the library to PyPI.org. It may have been uploaded by the time you read this.**
+
+## Ways to use the library without installing it from PyPI
+
+# Downloading the repository for manual installation
+
+Or [download it](https://github.com/Pythofanoff/AutoPySC/archive/refs/heads/master.zip) <br>
+Or use Git Bash: `git clone https://github.com/Pythofanoff/AutoPySC`
+
+1. Extract the ZIP archive and open the folder.
+2. In the terminal, run: **`cd AutoPySC`**.
+3. In the terminal, run **`python -m pip install -e .`** (the period after `-e` is required), or use **`.\build.bat`**.
+4. After installation succeeds, you should see:
+   `Successfully installed apysc-%version%` — where `%version%` is the current version.
+
+**Tip: To check that the library is working, run this command in the terminal:** **`apysc version`**. If it displays the current version, the library was installed successfully.
+
+**Tip: Also make sure you installed my library. At the time of writing, PyPI.org already has libraries with similar names.**  
+To check, run:
+**`pip show apysc`** — if the displayed information lists Pythofanoff as the author, everything is fine and you can move on to the next step.
+
+# Using the library
+
+1. **`cd path/to/MyProject`** — Use this command to navigate to the folder where you want to create your project. Create the folder first if it does not exist. Replace **`path/to/MyProject`** with the path to your project folder. <br>
+2. **`apysc`** — Opens the TUI tool (a graphical interface in the terminal). <br>
+3. **`apysc open`** — Opens the main configuration file. [Learn more](#configuration-file-details) <br>
+4. **`apysc build`** — Creates the project structure according to the configuration. <br>
+5. **`apysc clear-cache-project`** — Deletes the project’s cache files and folders. <br>
+6. **`apysc delete-project`** — Deletes the project’s files and folders.
+
+# Completion report
+
+```text
+_____________________   _____________________  __
+___  ____/___  _/__  | / /___  _/_  ___/__  / / / 
+__  /_    __  / __   |/ / __  / _____ \__  /_/ /  
+_  __/   __/ /  _  /|  / __/ /  ____/ /_  __  /   
+/_/      /___/  /_/ |_/  /___/  /____/ /_/ /_/    
+
+##############################################################################
+# BUILD SUCCESSFUL in N ms                                                  #
+#----------------------------------------------------------------------------#
+# CREATED: N files                                                           #
+# SKIPPED: N files                                                           #
+# MODIFIED: N files                                                          #
+# TOTAL: N files                                                             #
+##############################################################################
+```
+
+## Completion report details
+
+**SKIPPED** — The number of skipped files. Files are skipped when the `REPLACE_EXISTS` parameter is set to `False` and the project folder already contains files or folders with the same names as those `apysc` would create. <br>
+**CREATED** — The number of files created because no files or folders with matching names existed in the project folder. <br>
+**MODIFIED** — The number of files or folders replaced when the `REPLACE_EXISTS` parameter is set to `True` for them. <br>
+**TOTAL** — The total number of files and folders.
+
+## Configuration file details
+
+**You can open the configuration file with `apysc open` or through the TUI.**
+
+```python
+# ABOUT PROJECT
+NAME_OF_PROJECT: str = 'my_project' # DEFAULT = 'my_project'
+AUTHOR: str = 'Dev' # DEFAULT = 'Dev'
+VERSION: str = 'v0.0.1' # DEFAULT = 0.0.1
+DESCRIPTION: str = f'{NAME_OF_PROJECT} {VERSION} by {AUTHOR}' # DEFAULT = f'{NAME_OF_PROJECT} {VERSION} by {AUTHOR}'
+LICENSE: str = 'MIT' # DEFAULT = 'MIT', 'ApacheLicenseVersion2', 'GNU'
+EMAIL: str = 'youremail@example.com' # DEFAULT = 'youremail@example.com'
+HOMEPAGE: str = f'https://github.com/{AUTHOR}' # DEFAULT = f'https://github.com/{AUTHOR}'
+REPOSITORY: str = f'https://github.com/{AUTHOR}/{NAME_OF_PROJECT}' # DEFAULT = f'https://github.com/{AUTHOR}/{NAME_OF_PROJECT}'
+
+# MAIN
+LANGUAGE: str = 'py' # DEFAULT = 'py'
+VENV: str = 'pyvenv' # DEFAULT = 'pyvenv'; 'poetry', 'none'
+ARCHITECTURE: str = 'minimal' # DEFAULT = 'minimal'; 'lib', 'desktop', 'full'
+
+# SPECIFIC
+REPLACE_EXISTS_FILE: bool = False # DEFAULT = False (0); True (1)
+QUIET_LAUNCH: bool = False # DEFAULT = False (0); True (1)
+
+# THEME
+THEME_PATH: str = 'themes.json' # DEFAULT = 'themes.json'
+THEME_CHOOSE: str = 'basic' # DEFAULT = 'basic'; 'bloody', 'night'
+```
+
+**`NAME_OF_PROJECT = 'my_project'`** — Sets the project name. This name is used when creating the folder at `src/MyProject` and when writing project information to `pyproject.toml`. The text in quotation marks is the project name. `# DEFAULT =` is a comment reminding you of the default value; you do not need to change it because it is not used anywhere. The same applies to similar comments below. <br>
+
+**`AUTHOR = 'Dev'`** — Sets the author’s name, nickname, pseudonym, or alias. It is added to the `LICENSE` file as the copyright holder and to `pyproject.toml` as the author. <br>
+
+**`VERSION = 'v0.0.1'`** — Sets the project version. This version is added to `pyproject.toml`. It is the initial version; as you work on your project, you will need to update the version in `pyproject.toml`. <br>
+
+**`DESCRIPTION = f'{NAME_OF_PROJECT} {VERSION} by {AUTHOR}'`** — Sets the project description. It is written to `pyproject.toml` and `README.md`.
+
+**`LICENSE = 'MIT'`** — Sets the license for your project. You can read more about licenses [here](https://en.wikipedia.org/wiki/Open-source_license), for example. Your choice determines how and by whom your project can be used. The selected license is written to the `LICENSE` file in the project’s root directory. The supported licenses are listed below:
+
+| Official name | Configuration value |
+|---|---|
+| MIT | MIT |
+| Apache License Version 2.0 | ApacheLicenseVersion2 |
+| GNU General Public License | GNU |
+
+**`EMAIL = 'youremail@example.com'`** — Enter an email address to be added to `pyproject.toml` as a contact. This lets the community reach out with ideas, solutions, sponsorship offers, and other suggestions.
+
+**`HOMEPAGE = f'https://github.com/{AUTHOR}'`** and **`REPOSITORY = f'https://github.com/{AUTHOR}/{NAME_OF_PROJECT}'`** — `HOMEPAGE` is the URL of your GitHub profile, and `REPOSITORY` is the URL of your project repository, if you have one.
+
+## Main parameters
+
+**`LANGUAGE = 'py'`** — This parameter is not used yet, but it is intended to create a project structure for a specific programming language in the future.
+
+**`VENV = 'pyvenv'`** — Selects and creates a virtual environment (for Python projects only). You can read more about virtual environments [here](https://docs.python.org/3/library/venv.html), for example. Currently, only `none` and `pyvenv` are supported: the first disables virtual environment creation, and the second creates a standard Python virtual environment. Support for other environment managers was planned for the future.
+
+**`ARCHITECTURE = 'minimal'`** — Sets the folder structure to create.
+
+| Name | Purpose |
+|---|---|
+| full | Includes all project types (Desktop, Web) |
+| lib | Python library project structure |
+| desktop | Structure for desktop application development |
+| minimal | Minimal structure for a simple project |
+
+## Settings best left unchanged
+
+**`REPLACE_EXISTS_FILE = False`** — If set to `False`, `apysc` will not replace files; it will skip them. If set to `True`, files in the project folder with the same names as files created by `apysc` will be permanently replaced. It is recommended that you leave this set to `False`.
+
+**`QUIET_LAUNCH = False`** — Controls how much information is displayed in the terminal. When enabled, only the final result and counters are shown, while detailed information is hidden. It is recommended that you leave this set to `False`, since the detailed output can be useful.
+
+**Tip: It is recommended that you leave these parameters set to `False`. This helps protect your files and lets `apysc` display detailed information about the process. These settings have not been tested sufficiently, so issues may occur. If you encounter a problem, report it immediately in the GitHub Issues section!** [Click here](https://github.com/Pythofanoff/AutoPySC/issues)
+
 ``` txt
 ██████╗░██╗░░░██╗
 ██╔══██╗██║░░░██║
@@ -68,7 +203,8 @@ or: <br>
 4) **`apysc`** - Открывает TUI-инструмент (GUI интерфейс в терминале). <br>
 2) **`apysc open`** - Открывает общий файл конфигурации; [Подробнее] <br>(#подробнее-о-файле-конфигурации) <br>
 3) **`apysc build`** - Создаёт структуру проекту по заданной конфигурации; <br>
-4) **`apysc clear-cache-project`** - Удаляет файлы/папки кеша проекта. 
+4) **`apysc clear-cache-project`** - Удаляет файлы/папки кеша проекта. <br>
+5) **`apysc delete-project`** - Удаляет файлы и папки проекта.
 
 # Отчёт о законченной работе
 
@@ -149,7 +285,7 @@ THEME_CHOOSE: str = 'basic' # DEFAULT = 'basic'; 'bloody', 'night'
 
 **`LANGUAGE = 'py'`** - Этот параметр пока что нигде не используется, но в будущем он должен создавать структуру проекта под конкретный язык программирования.
 
-**`VENV = 'pyvenv'`** - Этот параметр отвечает за выбор и создание виртуального окружения. Про виртуальное окружение можно узнать, например, [Здесь](https://docs.python.org/3/library/venv.html). На данный момент поддерживается только два значения: `none` and `pyvenv` - первое значение не будет создавать виртуальное окружение, второй создаст стандартное окружение содержащие в стандартных модулях питона. В будущем планировалось добавить поддержку других виртуальных окружений.
+**`VENV = 'pyvenv'`** - Этот параметр отвечает за выбор и создание виртуального окружения (только для Python проектов). Про виртуальное окружение можно узнать, например, [Здесь](https://docs.python.org/3/library/venv.html). На данный момент поддерживается только два значения: `none` and `pyvenv` - первое значение не будет создавать виртуальное окружение, второй создаст стандартное окружение содержащие в стандартных модулях питона. В будущем планировалось добавить поддержку других виртуальных окружений.
 
 **`ARCHITECTURE = 'minimal'`** - Отвечает за создаваемую структуру папок.
 |Название                  |Цель                 |

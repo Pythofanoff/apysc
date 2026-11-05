@@ -11,7 +11,7 @@ def get_version():
     try:
         return version('apysc')
     except PackageNotFoundError:
-        return '0.0.5'
+        return '0.6.1'
 
 @click.group(invoke_without_command=True)
 @click.pass_context
@@ -30,6 +30,30 @@ def build():
 @cli.command(name='version', help='Show actual version of library')
 def version_cmd():
     click.echo(get_version())
+
+@cli.command(name='delete-project', help='Delete project')
+def clear_dir():
+    from colorama import Fore 
+    from .theme import CREATED, ERRORS, BASE_COLOR, SKIPPED
+
+    start_path = Path()
+    
+    for path in start_path.iterdir():
+        print(f"{ERRORS}Will be deleted: {BASE_COLOR}{path}")
+
+    print(f"{ERRORS}Permanently delete all project files and folders? {BASE_COLOR}({CREATED}Yes{Fore.RESET}/{SKIPPED}No{Fore.RESET})")
+    print(f"{ERRORS}This action cannot be undone!")
+
+    confirm = input()
+    if confirm.lower().startswith('y'):
+        try:
+            shutil.rmtree(start_path)
+        except:
+            pass
+        finally:
+            print(f'{CREATED}Successfully deleted!')
+
+    else: print(f'{SKIPPED}Cancel')
 
 @cli.command(name='clear-cache-project', help='Clearing project cache')
 def clear_cache():
