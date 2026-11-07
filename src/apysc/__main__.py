@@ -41,7 +41,8 @@ from .config import (
     LANGUAGE,
     ARCHITECTURE,
     REPLACE_EXISTS_FILE,
-    QUIET_LAUNCH
+    QUIET_LAUNCH,
+    INIT_GIT
 )
 
 init(autoreset=True)
@@ -169,8 +170,12 @@ class Builder:
 
     def builder_git(self):
         import subprocess
-        subprocess.run("git init -b master")
-        print(f"{CREATED}Successful")
+        
+        if INIT_GIT:
+            subprocess.run("git init -b master")
+            print(f"{CREATED}CREATED")
+        else:
+            print(f"{SKIPPED}SKIPPED")
 
     def builder_venv(self):
         if os.path.exists("venv") or not LANGUAGE.startswith("py"):

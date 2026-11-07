@@ -11,13 +11,13 @@ Perhaps one day this small script will grow into something bigger.`
 
 ## 3 reasons to use apysc
 
-1) It speeds up development.
-2) It automatically creates a pre-filled license file and a .gitignore file, sets up the project’s folder and file structure, and initializes a Git repository.
+1) It speeds up development;
+2) It automatically creates a pre-filled license file and a .gitignore file, sets up the project’s folder and file structure, and initializes a Git repository;
 3) It helps you manage your project by clearing its cache or deleting the project.
 
 ## Who is this tool for
-- Developers of small projects and indie studios.
-- Teams working on medium-sized and large projects, including teams at companies.
+- Developers of small projects and indie studios;
+- Teams working on medium-sized and large projects, including teams at companies; <br>
 Future goal: To build a universal tool for developers working with different technology stacks—one that speeds up development while helping maintain high software quality.
 
 >[!Warning]
@@ -65,7 +65,7 @@ MyProject
 
 ### <HOW TO LAUNCH?>
 
-1) **In terminal**: `pip install apysc` or launch auto-build `build.bat`;
+1) **In terminal**: `pip install apysc` or launch auto-build `install.bat`;
 2) **In terminal**: `cd MyProject`;
 3) **Configure file** `config.py` under the project: `apysc open`;
 4) **In terminal**: `apysc build` or `python -m apysc build`.

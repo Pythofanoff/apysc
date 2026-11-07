@@ -19,6 +19,7 @@ REPOSITORY: str = f'https://github.com/{AUTHOR}/{NAME_OF_PROJECT}' # DEFAULT = f
 LANGUAGE: str = 'py' # DEFAULT = 'py'
 VENV: str = 'pyvenv' # DEFAULT image.png= 'pyvenv'; 'poetry', 'none'
 ARCHITECTURE: str = 'minimal' # DEFAULT = 'minimal'; 'lib', 'desktop', 'full'
+INIT_GIT: bool = True # DEFAULT = 'True'; False
 
 # SPECIFIC
 REPLACE_EXISTS_FILE: bool = False # DEFAULT = False (0); True (1) 

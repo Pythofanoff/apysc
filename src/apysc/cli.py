@@ -13,12 +13,11 @@ def get_version():
     except PackageNotFoundError:
         return '0.6.1'
 
-@click.group(invoke_without_command=True)
+@click.group(invoke_without_command=True, help='Open TUI')
 @click.pass_context
 def cli(ctx):
-    from .tui import TUI
-    
     if ctx.invoked_subcommand is None:
+        from .tui import TUI
         TUI()
 
 @cli.command(help='Build project')
@@ -33,13 +32,18 @@ def version_cmd():
 
 @cli.command(name='delete-project', help='Delete project')
 def clear_dir():
-    from colorama import Fore 
+    from colorama import Fore, init
     from .theme import CREATED, ERRORS, BASE_COLOR, SKIPPED
 
+    init(autoreset=True)
     start_path = Path()
     
     for path in start_path.iterdir():
         print(f"{ERRORS}Will be deleted: {BASE_COLOR}{path}")
+    
+    if not any(start_path.iterdir()):
+        print(f"{SKIPPED}Nothing to delete — the folder is already empty.")
+        return 
 
     print(f"{ERRORS}Permanently delete all project files and folders? {BASE_COLOR}({CREATED}Yes{Fore.RESET}/{SKIPPED}No{Fore.RESET})")
     print(f"{ERRORS}This action cannot be undone!")
@@ -74,8 +78,9 @@ def clear_cache():
     confirm = input()
     if confirm.lower().startswith('y'):
         for path in sorted(caches, key=lambda p: len(p.parts), reverse=True):
-            if path.exists(): shutil.rmtree(path)
-        print(f'{len(caches)} {FOLDERS}caches {CREATED}successfully deleted')
+            if path.exists(): 
+                shutil.rmtree(path)
+                print(f'{len(caches)} {FOLDERS}caches {CREATED}successfully deleted')
     else: print(f'{SKIPPED}Cancel')
 
 @cli.command(name='open', help='Open file config')
