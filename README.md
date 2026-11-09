@@ -75,7 +75,7 @@ MyProject
 `apysc` - TUI; <br>
 `apysc version` - Show actual version tool; <br>
 `apysc delete-project` - Delete files and folders project. <br>
-`apysc clear-cache-project` - Clean up caches. <br>
+`apysc clear-cache` - Clean up caches. <br>
 `apysc --help` - Show all commands.
 
 ### [**More information**](https://github.com/Pythofanoff/AutoPySC/blob/master/docs%2Fgetting-started.md)

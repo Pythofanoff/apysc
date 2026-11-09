@@ -5,6 +5,7 @@ import keyboard
 from colorama import Fore, Style, init
 
 from .cli import build, open_cfg, clear_cache
+from .theme import BASE_COLOR, CREATED
 
 init(autoreset=True)
 
@@ -35,6 +36,7 @@ class TUI:
         self.controller()
 
     def menu_view(self) -> None:
+        """ RENDER MENU """
         menu = list(self.MENU)
 
         os.system("cls" if os.name == "nt" else "clear")
@@ -51,9 +53,10 @@ class TUI:
         menu[self.string_id] = self.FILLER * self.L_PADX + self.CURSOR + select + self.FILLER * self.R_PADX
         menu = "\n".join(menu)
         print(menu)
-        print(f"\n{self.MOVE_UP} - UP {self.MOVE_DOWN} - DOWN {self.CONFIRM} - ENTER {self.BACK_TO_MENU} - CANCEL ")
+        print(f"\n{CREATED}{self.MOVE_UP}{BASE_COLOR} - UP {CREATED}{self.MOVE_DOWN}{BASE_COLOR} - DOWN {CREATED}{self.CONFIRM}{BASE_COLOR} - ENTER {CREATED}{self.BACK_TO_MENU}{BASE_COLOR} - CANCEL ")
 
     def controller(self) -> None:
+        """ TUI CONTROLLER """
         count_menu_lines = len(self.MENU)-1
 
         while True:
@@ -82,6 +85,7 @@ class TUI:
             self.menu_view()
 
     def do(self) -> None:
+        """ """
         os.system("cls" if os.name == "nt" else "clear")
 
         if self.string_id == 0:

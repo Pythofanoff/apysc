@@ -59,7 +59,7 @@ To check, run:
 2. **`apysc`** — Opens the TUI tool (a graphical interface in the terminal). <br>
 3. **`apysc open`** — Opens the main configuration file. [Learn more](#configuration-file-details) <br>
 4. **`apysc build`** — Creates the project structure according to the configuration. <br>
-5. **`apysc clear-cache-project`** — Deletes the project’s cache files and folders. <br>
+5. **`apysc clear-cache`** — Deletes the project’s cache files and folders. <br>
 6. **`apysc delete-project`** — Deletes the project’s files and folders.
 
 # Completion report
@@ -107,6 +107,7 @@ REPOSITORY: str = f'https://github.com/{AUTHOR}/{NAME_OF_PROJECT}' # DEFAULT = f
 LANGUAGE: str = 'py' # DEFAULT = 'py'
 VENV: str = 'pyvenv' # DEFAULT = 'pyvenv'; 'poetry', 'none'
 ARCHITECTURE: str = 'minimal' # DEFAULT = 'minimal'; 'lib', 'desktop', 'full'
+INIT_GIT: bool = True # DEFAULT = 'True'; False
 
 # SPECIFIC
 REPLACE_EXISTS_FILE: bool = False # DEFAULT = False (0); True (1)
@@ -129,9 +130,9 @@ THEME_CHOOSE: str = 'basic' # DEFAULT = 'basic'; 'bloody', 'night'
 
 | Official name | Configuration value |
 |---|---|
-| MIT | MIT |
+| MIT                        | MIT                   |
 | Apache License Version 2.0 | ApacheLicenseVersion2 |
-| GNU General Public License | GNU |
+| GNU General Public License | GNU                   |
 
 **`EMAIL = 'youremail@example.com'`** — Enter an email address to be added to `pyproject.toml` as a contact. This lets the community reach out with ideas, solutions, sponsorship offers, and other suggestions.
 
@@ -151,6 +152,8 @@ THEME_CHOOSE: str = 'basic' # DEFAULT = 'basic'; 'bloody', 'night'
 | lib | Python library project structure |
 | desktop | Structure for desktop application development |
 | minimal | Minimal structure for a simple project |
+
+**`INIT_GIT = True`** - Initialization git if `INIT_GIT = TRUE`. 
 
 ## Settings best left unchanged
 
@@ -203,7 +206,7 @@ or: <br>
 4) **`apysc`** - Открывает TUI-инструмент (GUI интерфейс в терминале). <br>
 2) **`apysc open`** - Открывает общий файл конфигурации; [Подробнее] <br>(#подробнее-о-файле-конфигурации) <br>
 3) **`apysc build`** - Создаёт структуру проекту по заданной конфигурации; <br>
-4) **`apysc clear-cache-project`** - Удаляет файлы/папки кеша проекта. <br>
+4) **`apysc clear-cache`** - Удаляет файлы/папки кеша проекта. <br>
 5) **`apysc delete-project`** - Удаляет файлы и папки проекта.
 
 # Отчёт о законченной работе
@@ -251,6 +254,7 @@ REPOSITORY: str = f'https://github.com/{AUTHOR}/{NAME_OF_PROJECT}' # DEFAULT = f
 LANGUAGE: str = 'py' # DEFAULT = 'py'
 VENV: str = 'pyvenv' # DEFAULT = 'pyvenv'; 'poetry', 'none'
 ARCHITECTURE: str = 'minimal' # DEFAULT = 'minimal'; 'lib', 'desktop', 'full'
+INIT_GIT: bool = True # DEFAULT = 'True'; False
 
 # SPECIFIC
 REPLACE_EXISTS_FILE: bool = False # DEFAULT = False (0); True (1) 
@@ -294,6 +298,8 @@ THEME_CHOOSE: str = 'basic' # DEFAULT = 'basic'; 'bloody', 'night'
 |lib                       |Структура проекта под библиотеку Python|
 |desktop                   |Структура под разработку десктоп приложений|
 |minimal                   |Минимальная структура под простой проект|
+
+**`INIT_GIT = True`** - Указывает инициализировать git или нет. При `INIT_GIT = TRUE` будет инициализрован.
 
 ## Настройки которые лучше не менять
 

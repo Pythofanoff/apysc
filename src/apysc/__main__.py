@@ -2,48 +2,19 @@ import os
 import time
 import venv
 from datetime import datetime
-from pathlib import Path
 from importlib.metadata import version
+from pathlib import Path
 
 import toml
-from colorama import Fore, Style, init
+from colorama import Style, init
+
+from .config import (ARCHITECTURE, DESCRIPTION, INIT_GIT, LANGUAGE, LICENSE,
+                     NAME_OF_PROJECT, QUIET_LAUNCH, REPLACE_EXISTS_FILE, VENV)
+from .constants import GITIGNORE, GNU, MIT, TOML, ApacheLicenseVersion2
+from .theme import (BASE_COLOR, CREATED, ERRORS, FILES, FOLDERS, INFO, LOGO,
+                    MODIFIED, REMAINING, SKIPPED, TIME, TOTAL,
+                    VIRTUAL_ENVIROMENT, WARNINGS)
 from .utils.fileutils import cfg_open
-from .theme import (
-    TIME,
-    INFO,
-    FILES,
-    ERRORS,
-    FOLDERS,
-    CREATED,
-    SKIPPED,
-    WARNINGS,
-    MODIFIED,
-    REMAINING,
-    LOGO,
-    VIRTUAL_ENVIROMENT,
-    BASE_COLOR,
-    TOTAL
-)
-
-from .constants import (
-    GITIGNORE,
-    MIT,
-    ApacheLicenseVersion2,
-    GNU,
-    TOML
-) 
-
-from .config import (
-    NAME_OF_PROJECT,
-    DESCRIPTION,
-    LICENSE,
-    VENV,
-    LANGUAGE,
-    ARCHITECTURE,
-    REPLACE_EXISTS_FILE,
-    QUIET_LAUNCH,
-    INIT_GIT
-)
 
 init(autoreset=True)
 
@@ -63,49 +34,49 @@ class Builder:
         self.cfg = cfg_open(path=self.CFG_PATH)
 
         label = "virtual environments "
-        padded_label = f"{label + Fore.RESET:.<60}"
+        padded_label = f"{label + BASE_COLOR:.<60}"
 
         print(
-            f"\r{self.get_time()}{Fore.RESET}"
-            f"Creating {VIRTUAL_ENVIROMENT}{padded_label}{Fore.RESET} ",
+            f"\r{self.get_time()}{BASE_COLOR}"
+            f"Creating {VIRTUAL_ENVIROMENT}{padded_label}{BASE_COLOR} ",
             end="",
             flush=True,
         )
 
         self.builder_venv()
-        print(f"\r{self.get_time()}{Fore.RESET}Initialization git... ", end="", flush=True)
+        print(f"\r{self.get_time()}{BASE_COLOR}Initialization git... ", end="", flush=True)
         self.builder_git()
-        print(f"{self.get_time()}{Fore.RESET}Creating {FOLDERS}folders{Fore.RESET}...")
+        print(f"{self.get_time()}{BASE_COLOR}Creating {FOLDERS}folders{BASE_COLOR}...")
         self.builder_folders()
-        print(f"{self.get_time()}{Fore.RESET}Creating {FILES}files{Fore.RESET}...")
+        print(f"{self.get_time()}{BASE_COLOR}Creating {FILES}files{BASE_COLOR}...")
         self.builder_files()
 
     def get_time(self):
         current_time = datetime.now().strftime(self.FORMAT_TIME)
-        return f'{BASE_COLOR}[{Fore.RESET} {TIME}{current_time}{Fore.RESET} {BASE_COLOR}]: '
+        return f'{BASE_COLOR}[{BASE_COLOR} {TIME}{current_time}{BASE_COLOR} {BASE_COLOR}]: '
 
     def skipping(self, value: str, color: str, msg: str='File already exists: '):
         print(
-            f"{BASE_COLOR}└───{Fore.RESET}{self.get_time()}"
+            f"{BASE_COLOR}└───{BASE_COLOR}{self.get_time()}"
             f"{msg}"
-            f"{FOLDERS}{value + ' ' f'{Fore.RESET}':.<{self.DOT_WIDTH-2}} "
+            f"{FOLDERS}{value + ' ' f'{BASE_COLOR}':.<{self.DOT_WIDTH-2}} "
             f"{SKIPPED}SKIPPED"
         )
         self.skipped += 1
 
     def creating(self, value: str, color: str):
         print(
-            f"{BASE_COLOR}└───{Fore.RESET}{BASE_COLOR}{self.get_time()} "
-            f"{FOLDERS}{value + ' ' f'{Fore.RESET}':.<{self.DOT_WIDTH}} "
+            f"{BASE_COLOR}└───{BASE_COLOR}{BASE_COLOR}{self.get_time()} "
+            f"{FOLDERS}{value + ' ' f'{BASE_COLOR}':.<{self.DOT_WIDTH}} "
             f"{CREATED}CREATED"
         )
         self.created += 1   
 
     def editing(self, value: str, color: str, msg: str='File already exists:'):
         print(
-            f"{BASE_COLOR}└───{Fore.RESET}{self.get_time()}"
+            f"{BASE_COLOR}└───{BASE_COLOR}{self.get_time()}"
             f"{msg}"
-            f"{FILES}{value + ' ' f'{Fore.RESET}':.<{self.DOT_WIDTH}} " 
+            f"{FILES}{value + ' ' f'{BASE_COLOR}':.<{self.DOT_WIDTH}} " 
             f"{MODIFIED}MODIFIED"
         )
         self.modified += 1   
@@ -133,7 +104,7 @@ class Builder:
             self.total += 1
 
             file_path = file_path.replace("{NAME_OF_PROJECT}", NAME_OF_PROJECT)
-
+            path = Path(file_path)
             is_file_exists = os.path.exists(file_path)
 
             if is_file_exists and not REPLACE_EXISTS_FILE:
@@ -141,26 +112,26 @@ class Builder:
                 continue
 
             if file_path == ".gitignore":
-                Path(file_path).write_text(GITIGNORE, encoding=self.ENCODING)
+                path.write_text(GITIGNORE, encoding=self.ENCODING)
             elif file_path == "LICENSE":
                 if not LICENSE.isspace():
                     if LICENSE.lower() == "mit":
-                        Path(file_path).write_text(MIT, encoding=self.ENCODING)
+                        path.write_text(MIT, encoding=self.ENCODING)
                     elif LICENSE.lower() == "apachelicenseversion2":
-                        Path(file_path).write_text(ApacheLicenseVersion2, encoding=self.ENCODING)
+                        path.write_text(ApacheLicenseVersion2, encoding=self.ENCODING)
                     elif LICENSE.lower() == "gnu":
-                        Path(file_path).write_text(GNU, encoding=self.ENCODING)
-                else: Path(file_path).write_text("", encoding=self.ENCODING)
+                        path.write_text(GNU, encoding=self.ENCODING)
+                else: path.write_text("", encoding=self.ENCODING)
             elif file_path == "README.md":
                 if not DESCRIPTION.isspace():
                     open(file_path, "w", encoding=self.ENCODING).write(DESCRIPTION)                             
-                else: Path(file_path).write_text("", encoding=self.ENCODING)
+                else: path.write_text("", encoding=self.ENCODING)
             elif file_path == "pyproject.toml":
-                Path(file_path).write_text("", encoding=self.ENCODING)        
+                path.write_text("", encoding=self.ENCODING)        
                 toml_ = toml.dumps(TOML)
                 Path("pyproject.toml").write_text(toml_, encoding=self.ENCODING)  
             else:
-                Path(file_path).write_text("", encoding=self.ENCODING)        
+                path.write_text("", encoding=self.ENCODING)        
 
             if is_file_exists and REPLACE_EXISTS_FILE:  
                 self.editing(color=MODIFIED, value=file_path)
@@ -205,7 +176,7 @@ ___    |__  __ \ \/ /_  ___/_  ____/
 __  /| |_  /_/ /_  /_____ \_  /       
 _  ___ |  ____/_  / ____/ // /___        
 /_/  |_/_/     /_/  /____/ \____/
-{Fore.RESET}""")
+{BASE_COLOR}""")
         print(f"{' '*29}{LOGO}v.{version('apysc')}\n")
     
     builder = Builder()
@@ -235,14 +206,14 @@ _  __/   __/ /  _  /|  / __/ /  ____/ /_  __  /
 
     def row(label, value, color):
         text = (
-            f"{label}{BASE_COLOR}:{Fore.RESET} "
-            f"{value} {FILES}files{Fore.RESET}/{FOLDERS}folders"
+            f"{label}{BASE_COLOR}:{BASE_COLOR} "
+            f"{value} {FILES}files{BASE_COLOR}/{FOLDERS}folders"
         )
         colored_text = (
             f"{color}{label}{Style.RESET_ALL}"
-            f"{BASE_COLOR}:{Fore.RESET} "
+            f"{BASE_COLOR}:{BASE_COLOR} "
             f"{FOLDERS}{value}{Style.RESET_ALL} "
-            f"{FILES}files{Fore.RESET}/{FOLDERS}folders"
+            f"{FILES}files{BASE_COLOR}/{FOLDERS}folders"
         )
 
         visible_length = len(ANSI_RE.sub("", colored_text))

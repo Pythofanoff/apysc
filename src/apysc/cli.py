@@ -1,17 +1,23 @@
-from importlib.metadata import PackageNotFoundError, version
 import importlib
 import os
+import shutil
 import sys
+from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 
 import click
-import shutil
+from colorama import Fore, init
+
+from .theme import BASE_COLOR, CREATED, ERRORS, SKIPPED, FOLDERS
+
+init(autoreset=True)
+start_path = Path()
 
 def get_version():
     try:
         return version('apysc')
     except PackageNotFoundError:
-        return '0.6.1'
+        return "v. project apysc: None"
 
 @click.group(invoke_without_command=True, help='Open TUI')
 @click.pass_context
@@ -32,12 +38,6 @@ def version_cmd():
 
 @cli.command(name='delete-project', help='Delete project')
 def clear_dir():
-    from colorama import Fore, init
-    from .theme import CREATED, ERRORS, BASE_COLOR, SKIPPED
-
-    init(autoreset=True)
-    start_path = Path()
-    
     for path in start_path.iterdir():
         print(f"{ERRORS}Will be deleted: {BASE_COLOR}{path}")
     
@@ -59,14 +59,8 @@ def clear_dir():
 
     else: print(f'{SKIPPED}Cancel')
 
-@cli.command(name='clear-cache-project', help='Clearing project cache')
+@cli.command(name='clear-cache', help='Clearing project cache')
 def clear_cache():
-    from colorama import Fore, init    
-    from .theme import CREATED, ERRORS, FOLDERS, BASE_COLOR, SKIPPED
-    
-    init(autoreset=True)
-
-    start_path = Path()
     caches: list = [path for path in start_path.rglob("*cache*") if path.name != 'cache']
 
     cache_path = '\n'.join(f'"{cache}",' for cache in caches)
@@ -84,8 +78,8 @@ def clear_cache():
     else: print(f'{SKIPPED}Cancel')
 
 @cli.command(name='open', help='Open file config')
-@click.option('-cfg', '--cfg', 'cfg_path', default='config.py')
-def open_cfg(cfg_path):
+# @click.option('-cfg', '--cfg', 'cfg_path', default='config.py')
+def open_cfg(cfg_path='config.py'):
     try:
         pkg = importlib.import_module("apysc")
         base_dir = Path(pkg.__file__).parent
@@ -101,12 +95,13 @@ def open_cfg(cfg_path):
     p = p.resolve(strict=False)
 
     if not p.exists() or not p.is_file():
-        click.echo(f"Файл не найден: {p}", err=True)
+        click.echo(f"File not found: {p}", err=True)
         raise SystemExit(1)
 
     try:
         if sys.platform.startswith("win"):
+            print('Opening config...')
             os.startfile(str(p))
     except Exception as e:
-        click.echo(f"Не удалось открыть {p}: {e}", err=True)
+        click.echo(f"It didn't work to open {p}: {e}", err=True)
         raise
