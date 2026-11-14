@@ -1,10 +1,11 @@
 @ cls 
 @ color 3 
 @ color 
-echo Uninstall apysc... 
+@ echo Uninstall apysc... 
 python -m pip uninstall apysc -y
-echo Install apysc... 
+@ echo Install apysc... 
 python -m pip install -e .
 @ color 3 
-echo apycs sucefull installed!
-@ color 
+@ echo apycs sucefull installed!
+@ color
+pass

@@ -97,8 +97,8 @@ _  __/   __/ /  _  /|  / __/ /  ____/ /_  __  /
 NAME_OF_PROJECT: str = 'my_project' # DEFAULT = 'my_project'
 AUTHOR: str = 'Dev' # DEFAULT = 'Dev'
 VERSION: str = 'v0.0.1' # DEFAULT = 0.0.1
-DESCRIPTION: str = f'{NAME_OF_PROJECT} {VERSION} by {AUTHOR}' # DEFAULT = f'{NAME_OF_PROJECT} {VERSION} by {AUTHOR}'
-LICENSE: str = 'MIT' # DEFAULT = 'MIT', 'ApacheLicenseVersion2', 'GNU'
+DESCRIPTION: str = f'{NAME_OF_PROJECT} {VERSION} by {AUTHOR} powered by apysc' # DEFAULT = f'{NAME_OF_PROJECT} {VERSION} by {AUTHOR} powered by apysc'
+LICENSE: str = 'MIT' # DEFAULT = 'MIT'; 'ApacheLicenseVersion2', 'GNU', 'MPLVersion2'
 EMAIL: str = 'youremail@example.com' # DEFAULT = 'youremail@example.com'
 HOMEPAGE: str = f'https://github.com/{AUTHOR}' # DEFAULT = f'https://github.com/{AUTHOR}'
 REPOSITORY: str = f'https://github.com/{AUTHOR}/{NAME_OF_PROJECT}' # DEFAULT = f'https://github.com/{AUTHOR}/{NAME_OF_PROJECT}'
@@ -133,6 +133,7 @@ THEME_CHOOSE: str = 'basic' # DEFAULT = 'basic'; 'bloody', 'night'
 | MIT                        | MIT                   |
 | Apache License Version 2.0 | ApacheLicenseVersion2 |
 | GNU General Public License | GNU                   |
+| Mozilla Public License Version 2.0| MPLVersion2|
 
 **`EMAIL = 'youremail@example.com'`** — Enter an email address to be added to `pyproject.toml` as a contact. This lets the community reach out with ideas, solutions, sponsorship offers, and other suggestions.
 
@@ -244,8 +245,8 @@ TOTAL - Счётчик общего количества файлов и пап�
 NAME_OF_PROJECT: str = 'my_project' # DEFAULT = 'my_project'
 AUTHOR: str = 'Dev' # DEFAULT = 'Dev'
 VERSION: str = 'v0.0.1' # DEFAULT = 0.0.1
-DESCRIPTION: str = f'{NAME_OF_PROJECT} {VERSION} by {AUTHOR}' # DEFAULT = f'{NAME_OF_PROJECT} {VERSION} by {AUTHOR}'
-LICENSE: str = 'MIT' # DEFAULT = 'MIT', 'ApacheLicenseVersion2', 'GNU'
+DESCRIPTION: str = f'{NAME_OF_PROJECT} {VERSION} by {AUTHOR} powered by apysc' # DEFAULT = f'{NAME_OF_PROJECT} {VERSION} by {AUTHOR} powered by apysc'
+LICENSE: str = 'MIT' # DEFAULT = 'MIT'; 'ApacheLicenseVersion2', 'GNU', 'MPLVersion2'
 EMAIL: str = 'youremail@example.com' # DEFAULT = 'youremail@example.com'
 HOMEPAGE: str = f'https://github.com/{AUTHOR}' # DEFAULT = f'https://github.com/{AUTHOR}'
 REPOSITORY: str = f'https://github.com/{AUTHOR}/{NAME_OF_PROJECT}' # DEFAULT = f'https://github.com/{AUTHOR}/{NAME_OF_PROJECT}'
@@ -280,6 +281,7 @@ THEME_CHOOSE: str = 'basic' # DEFAULT = 'basic'; 'bloody', 'night'
 |MIT                       |MIT                  |
 |Apache License Version 2.0|ApacheLicenseVersion2|
 |GNU General Public License|GNU                  |
+| Mozilla Public License Version 2.0| MPLVersion2|
 
 **`EMAIL = 'youremail@example.com'`** - В данный параметр можно передать e-mail который будет подставляться в файл `pyproject.toml`, он является контактом, чтобы коммюнити вашего продукта предлагала идеи, решения, спонсорство и предложения, на указанную почту.
 

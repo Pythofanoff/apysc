@@ -1,4 +1,5 @@
 import os
+import shutil
 import time
 import venv
 from datetime import datetime
@@ -10,7 +11,8 @@ from colorama import Style, init
 
 from .config import (ARCHITECTURE, DESCRIPTION, INIT_GIT, LANGUAGE, LICENSE,
                      NAME_OF_PROJECT, QUIET_LAUNCH, REPLACE_EXISTS_FILE, VENV)
-from .constants import GITIGNORE, GNU, MIT, TOML, ApacheLicenseVersion2
+from .constants import (GITIGNORE, GNU, MIT, TOML, ApacheLicenseVersion2,
+                        MPLVersion2)
 from .theme import (BASE_COLOR, CREATED, ERRORS, FILES, FOLDERS, INFO, LOGO,
                     MODIFIED, REMAINING, SKIPPED, TIME, TOTAL,
                     VIRTUAL_ENVIROMENT, WARNINGS)
@@ -121,6 +123,8 @@ class Builder:
                         path.write_text(ApacheLicenseVersion2, encoding=self.ENCODING)
                     elif LICENSE.lower() == "gnu":
                         path.write_text(GNU, encoding=self.ENCODING)
+                    elif LICENSE.lower() == "mpl":
+                        path.write_text(MPLVersion2, encoding=self.ENCODING)
                 else: path.write_text("", encoding=self.ENCODING)
             elif file_path == "README.md":
                 if not DESCRIPTION.isspace():
@@ -138,6 +142,8 @@ class Builder:
 
             elif not is_file_exists:
                 self.creating(color=CREATED, value=file_path)
+
+        # shutil.copy("", "")
 
     def builder_git(self):
         import subprocess

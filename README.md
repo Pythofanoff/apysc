@@ -35,32 +35,20 @@ MyProject
 ├───.git
 ├───configs
 ├───docs
-│       index.md
+│      └───index.md
 │
 ├───logs
 ├───src
 │   └───my_project
-│           config.py
-│           main.py
-│           __init__.py
+│       └───config.py
+│       └───main.py
+│       └───__init__.py
 │
 ├───tests
-│       test_main.py
-│       __init__.py
+│       └───test_main.py
+│       └───__init__.py
 │
 └───venv
-    │   pyvenv.cfg
-    │
-    ├───Include
-    ├───Lib
-    │   └───site-packages
-    └───Scripts
-            activate
-            activate.bat
-            Activate.ps1
-            deactivate.bat
-            python.exe
-            pythonw.exe
 ```
 
 ### <HOW TO LAUNCH?>
